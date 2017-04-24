@@ -6,8 +6,8 @@ My personal elixir examples
 ## Elixir is ...
 
 * A dynamic and functional programming language
-* It's used for scalable and maintainable applications
-* Executed on the Erlang VM (known for running low-latency, distributed and fault-tolerant systems)
+* It's used for scalable, maintainable, distributed, fault-tolerant applications
+* Runs on the Erlang VM (known for running low-latency, distributed and fault-tolerant systems)
 * successfully used in web development and the embedded software domain.
 
 ## Instalation
@@ -33,4 +33,13 @@ of my projects (and easily keep elixir updated).
   asdf current elixir #Check if installation succeeded
   mix local.hex # Now you're good to go with mix. Update it. Done.
   ```
+
+## Interactive Elixir (iex)
+
+* You can play around elixir anytime you want with iex. Just type on your console/terminal:
+```bash
+iex
+```
+* An interactive prompt will show up. Play with it!
+* press Ctrl+C twice to shut it down
 
