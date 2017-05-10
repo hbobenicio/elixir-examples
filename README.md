@@ -16,7 +16,13 @@ My personal elixir examples
 to manage the elixir version of my system.
 This way I can avoid versions and dependencies collision
 of my projects (and easily keep elixir updated).
-  * Firstly, here are the steps to install erlang:
+  * In order to install a full version of Erlang into your machine,
+  some basic development dependencies are needed:
+  ```bash
+  sudo apt-get update
+  sudo apt-get install build-essential autoconf m4 libncurses5-dev libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev unixodbc-dev
+  ```
+  * After that, here are the steps to install erlang:
   ```bash
   asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
   asdf list-all erlang #Pick the latest version
