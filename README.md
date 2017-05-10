@@ -30,14 +30,14 @@ of my projects (and easily keep elixir updated).
   asdf global erlang 19.3 #Use this version as default
   asdf current erlang #Check if installation succeeded
   ```
-  * Do the same process for elixir now:
+  * Then do the same process for elixir now:
   ```bash
   asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir
   asdf list-all elixir #Pick the latest version
   asdf install elixir 1.4.2 #ATM, the latest version is 1.4.2
   asdf global elixir 1.4.2 #Use this version as default
   asdf current elixir #Check if installation succeeded
-  mix local.hex # Now you're good to go with mix. Update it. Done.
+  mix local.hex #Now you're good to go with mix. Update it. Done.
   ```
 
 ## Interactive Elixir (iex)
