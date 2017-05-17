@@ -1,5 +1,7 @@
 defmodule SequentialFactorial do
 
+  def range_fat({0, 0}), do: 1
+
   @doc "OBS: not tail recursive. Improve it!"
   def range_fat({x, y}) when (x == y) do
     x

@@ -16,12 +16,13 @@ defmodule DistributedFactorial do
 
     {p1, p2} = half_partition(n)
 
-    pid1 = spawn_link(SequentialFactorial, :range_fat, [p1])
-    pid2 = spawn_link(SequentialFactorial, :range_fat, [p2])
+    t1 = Task.async(SequentialFactorial, :range_fat, [p1])
+    t2 = Task.async(SequentialFactorial, :range_fat, [p2])
 
-    receive do
-      {:msg,contents} -> nil
-    end
+    f1 = Task.await(t1)
+    f2 = Task.await(t2)
+
+    f1 * f2
 	end
 
 end
