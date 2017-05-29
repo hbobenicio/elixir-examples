@@ -1,18 +1,20 @@
 defmodule Chat.NameServer do
   use GenServer
 
+  @name :name_server
+
   # Client API
 
   def start_link do
-    GenServer.start_link(__MODULE__, :ok)
+    GenServer.start_link(__MODULE__, :ok, name: @name)
   end
 
-  def list(server_pid) do
-    GenServer.call(server_pid, {:list})
+  def list do
+    GenServer.call(@name, {:list})
   end
 
-  def register(server_pid, chat) when is_chat_info(chat) do
-    GenServer.cast(server_pid, {:register, chat})
+  def register(chat) do
+    GenServer.cast(@name, {:register, chat})
   end
 
   # GenServer Callbacks
