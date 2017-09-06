@@ -11,25 +11,17 @@ defmodule NeuralNetwork.Utils do
       iex> NeuralNetwork.Utils.dot_product [1, 2], [1, 2]
       5
   """
-  @spec dot_product(list(number), list(number)) :: number
+  @spec dot_product([number], [number]) :: number
   def dot_product(l1, l2) when is_list(l1) and is_list(l2) do
     dot_product_impl 0, l1, l2
   end
 
-  @doc """
-  Tail recursive implementation for `NeuralNetwork.Utils.dot_product/2`
-  Base case
-  """
   defp dot_product_impl(acc, [], []) do
     acc
   end
 
-  @doc """
-  Tail recursive implementation for `NeuralNetwork.Utils.dot_product/2`
-  General case
-  """
-  defp dot_product_impl(acc, [x | t1], [y | t2]) do
-    dot_product_impl(acc + x * y, t1, t2)
+  defp dot_product_impl(acc, [x | xs], [y | ys]) do
+    dot_product_impl(acc + x * y, xs, ys)
   end
 
 end

@@ -8,12 +8,20 @@ defmodule NeuralNetwork.Perceptron do
 
   def new(:and, size) do
     weights = List.duplicate 1, size
-    %Perceptron{weights: weights, threshold: 2}
+    %Perceptron {
+      weights: weights,
+      threshold: 2,
+      activation_function: fn x -> x >= 2 end
+    }
   end
 
   def new(:or, size) do
     weights = List.duplicate 1, size
-    %Perceptron{weights: weights, threshold: 1}
+    %Perceptron {
+      weights: weights,
+      threshold: 1,
+      activation_function: fn x -> x >= 1 end
+    }
   end
 
   def eval(perceptron, input) when is_list(input) do
