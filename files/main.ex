@@ -4,7 +4,7 @@ defmodule Main do
   def read_file(path) do
     buffer_size = 100
     File.stream!(path) |> Stream.chunk(buffer_size) |> Enum.each(fn chunk ->
-      IO.puts chunk
+      IO.puts "SOMETHING"
     end)
   end
 end

@@ -1,5 +1,5 @@
 defmodule NeuralNetwork.Perceptron do
-  defstruct [weights: [], threshold: 0.0, activation_function: nil]
+  defstruct [weights: [], activation_function: nil]
 
   alias NeuralNetwork.Perceptron
   alias NeuralNetwork.Utils
@@ -10,7 +10,6 @@ defmodule NeuralNetwork.Perceptron do
     weights = List.duplicate 1, size
     %Perceptron {
       weights: weights,
-      threshold: 2,
       activation_function: fn x -> x >= 2 end
     }
   end
@@ -19,7 +18,6 @@ defmodule NeuralNetwork.Perceptron do
     weights = List.duplicate 1, size
     %Perceptron {
       weights: weights,
-      threshold: 1,
       activation_function: fn x -> x >= 1 end
     }
   end
@@ -27,7 +25,7 @@ defmodule NeuralNetwork.Perceptron do
   def eval(perceptron, input) when is_list(input) do
     output = Utils.dot_product input, perceptron.weights
 
-    if output >= perceptron.threshold do
+    if perceptron.activation_function.(output) do
       1
     else
       0

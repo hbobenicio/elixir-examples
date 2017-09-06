@@ -24,4 +24,9 @@ defmodule NeuralNetwork.Utils do
     dot_product_impl(acc + x * y, xs, ys)
   end
 
+  @spec compare(number, number) :: boolean
+  def compare(x, y, epsilon \\ 0.0000001) do
+    abs(x - y) <= epsilon
+  end
+
 end
