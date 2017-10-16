@@ -30,3 +30,8 @@ Notes on my personal study for OTP architecture
 
 * It is a "specification and computational flow for Elixir"
 * Provides a way to define a pipeline of work
+
+#### Application
+
+* A component that can be started and stopped as a unit
+* Can also be reused in other systems.
