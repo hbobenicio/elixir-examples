@@ -2,32 +2,33 @@ defmodule Chat.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :chat,
-     version: "0.1.0",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :chat,
+      version: "0.1.0",
+      elixir: "~> 1.5",
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
+  # Run "mix help compile.app" to learn about applications.
   def application do
-    # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger]]
+    [
+      extra_applications: [:logger],
+
+      # The :mod option specifies the “application callback module”,
+      # followed by the arguments to be passed on application start.
+      # The application callback module can be any module that implements the
+      # Application behaviour.
+      mod: {Chat, []}
+    ]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:my_dep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:my_dep, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
+  # Run "mix help deps" to learn about dependencies.
   defp deps do
-    []
+    [
+      # {:dep_from_hexpm, "~> 0.3.0"},
+      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+    ]
   end
 end
