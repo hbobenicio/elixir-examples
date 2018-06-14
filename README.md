@@ -20,7 +20,7 @@ of my projects (and easily keep elixir updated).
   some basic development dependencies are needed:
   ```bash
   sudo apt-get update
-  sudo apt-get install build-essential autoconf m4 libncurses5-dev libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev unixodbc-dev
+  sudo apt-get install build-essential autoconf m4 libncurses5-dev libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev unixodbc-dev xsltproc fop
   ```
   * After that, here are the steps to install erlang:
   ```bash
