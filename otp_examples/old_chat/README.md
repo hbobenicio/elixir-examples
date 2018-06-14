@@ -9,9 +9,7 @@ by adding `chat` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [
-    {:chat, "~> 0.1.0"}
-  ]
+  [{:chat, "~> 0.1.0"}]
 end
 ```
 

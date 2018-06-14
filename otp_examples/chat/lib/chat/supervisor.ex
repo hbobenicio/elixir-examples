@@ -1,16 +1,23 @@
 defmodule Chat.Supervisor do
+  @moduledoc """
+  The Chat Supervisor
+  """
   use Supervisor
 
+  # API
+
   def start_link do
-    Supervisor.start_link(__MODULE__, [])
+    Supervisor.start_link(__MODULE__, :ok, [name: __MODULE__])
   end
 
-  def init(_) do
+  # CALLBACKS
+
+  def init(:ok) do
     children = [
-      worker(Chat.NameServer, [])
+      Chat.ChannelList # Calls Chat.ChannelList.start_link/1 with []
     ]
 
-    supervise(children, strategy: :one_for_one)
+    Supervisor.init(children, strategy: :one_for_one)
   end
 
 end

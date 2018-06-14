@@ -2,7 +2,7 @@ defmodule ChatTest do
   use ExUnit.Case
   doctest Chat
 
-  test "the truth" do
-    assert 1 + 1 == 2
-  end
+  # test "greets the world" do
+  #   assert Chat.hello() == :world
+  # end
 end
