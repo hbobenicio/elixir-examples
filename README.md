@@ -12,40 +12,44 @@ My personal elixir examples
 
 ## Instalation
 
-* I'm using [asdf-vm version manager](https://github.com/asdf-vm/asdf)
-to manage the elixir version of my system.
-This way I can avoid versions and dependencies collision
-of my projects (and easily keep elixir updated).
-  * In order to install a full version of Erlang into your machine,
-  some basic development dependencies are needed:
-  ```bash
-  sudo apt-get update
-  sudo apt-get install build-essential autoconf m4 libncurses5-dev libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev libpng3 libssh-dev unixodbc-dev xsltproc fop
-  ```
-  * After that, here are the steps to install erlang:
-  ```bash
-  asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
-  asdf list-all erlang #Pick the latest version
-  asdf install erlang 19.3 #ATM, the latest verion is 19.3
-  asdf global erlang 19.3 #Use this version as default
-  asdf current erlang #Check if installation succeeded
-  ```
-  * Then do the same process for elixir now:
-  ```bash
-  asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir
-  asdf list-all elixir #Pick the latest version
-  asdf install elixir 1.4.2 #ATM, the latest version is 1.4.2
-  asdf global elixir 1.4.2 #Use this version as default
-  asdf current elixir #Check if installation succeeded
-  mix local.hex #Now you're good to go with mix. Update it. Done.
-  ```
+### The problem with asdf-vm erlang plugin and Ubuntu 20.04
 
-## Interactive Elixir (iex)
+I used to use the [erlang plugin](https://github.com/asdf-vm/asdf-erlang/) for [asdf-vm](https://asdf-vm.com/) as my installing process.
 
-* You can play around elixir anytime you want with iex. Just type on your console/terminal:
+Unfortunately, it became really buggy at least on my Ubuntu 20.04, specially in blindlessly missing my standard libssl-dev installation.
+
+Actually, this is not a direct issue of the plugin but an issue on [kerl](https://github.com/kerl/kerl) itself, which is used to build erlang.
+
+Kerl tries to guess that my openssl installation is prefixed in a simple path, which is not true for libssl-dev on ubuntu 20.04.
+The main header is at `/usr/include/openssl/ssl.h` and lib is at `/usr/lib/x86_64-linux-gnu/libssl.so`, but unfortunatelly kerl appears to only use the flag `--use-ssl` that points to the prefix installation of openssl... and it still misses headers and libs even with `--use-ssl=/usr`.
+
+So sad.
+
+Do just use the official apt repository and its packages from the erlang solutions itself. Here it is how:
+
+### Installing Erlang from precompiled binaries from the Erlang Solutions official repository
+
 ```bash
-iex
+sudo apt-get install build-essential autoconf m4 libncurses5-dev libwxgtk3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev # you don't need all of these for a minimal functional running erlang installation, but for developtment it's really handy, specially for the observer GUI monitor
+wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -
+sudo apt-add-repository "deb https://packages.erlang-solutions.com/ubuntu focal contrib"
+sudo apt update
+sudo apt install erlang # other recommended packages: erlang-manpages erlang-doc lksctp-tools tcl-tclreadline
+erl # check if it's ok. ctrl+c twice to quit
 ```
-* An interactive prompt will show up. Play with it!
-* press Ctrl+C twice to shut it down
+
+### Installing Elixir with asdf-vm elixir plugin
+
+Now with erlang successfully installed, in elixir asdf-vm plugin we trust!
+
+```
+asdf plugin-add elixir
+asdf install elixir 1.12.2-otp-24
+asdf global elixir 1.12.2-otp-24
+asdf reshim
+iex
+iex(1)> :observer.start
+```
+
+You should see the observer wxWidgets GUI application running.
 
